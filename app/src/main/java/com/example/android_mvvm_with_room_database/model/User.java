@@ -1,10 +1,23 @@
 package com.example.android_mvvm_with_room_database.model;
 
+
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "users")
 public class User {
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "address")
     private String address;
+
+    @ColumnInfo(name = "number")
     private String number;
 
     public int getId() {
