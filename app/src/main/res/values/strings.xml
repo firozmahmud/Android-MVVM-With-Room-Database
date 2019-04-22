@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android-MVVM-With-Room-Database</string>
+    <string name="txt_hint">Salman Khan</string>
+    <string name="description">Description</string>
+</resources>
