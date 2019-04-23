@@ -9,4 +9,9 @@ public class DetailsActivityViewModel extends AndroidViewModel {
     public DetailsActivityViewModel(@NonNull Application application) {
         super(application);
     }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+    }
 }

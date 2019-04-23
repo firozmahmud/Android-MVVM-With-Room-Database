@@ -1,5 +1,6 @@
 package com.example.android_mvvm_with_room_database.view.activity;
 
+import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -8,17 +9,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.android_mvvm_with_room_database.R;
 import com.example.android_mvvm_with_room_database.databinding.ActivityMainBinding;
-import com.example.android_mvvm_with_room_database.model.User;
+import com.example.android_mvvm_with_room_database.service.model.User;
 import com.example.android_mvvm_with_room_database.view.adapter.UserAdapter;
+import com.example.android_mvvm_with_room_database.view.listener.ItemClickListener;
 import com.example.android_mvvm_with_room_database.viewmodel.MainActivityViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ItemClickListener {
 
     private ActivityMainBinding binding;
     private MainActivityViewModel viewModel;
@@ -44,8 +47,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // Add new user
+                addNewUser();
             }
         });
+
+    }
+
+    private void addNewUser() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.add_new_user_layout);
+        dialog.setCancelable(false);
+
+        final EditText nameEt = dialog.findViewById(R.id.new_name);
+        final EditText addressEt = dialog.findViewById(R.id.new_address);
+        final EditText numberEt = dialog.findViewById(R.id.new_number);
+
+        Button saveBtn = dialog.findViewById(R.id.saveBtn);
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.insert(new User(nameEt.getText().toString().trim(), addressEt.getText().toString().trim(),
+                        numberEt.getText().toString().trim()));
+
+
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     private void loadData() {
@@ -57,5 +87,16 @@ public class MainActivity extends AppCompatActivity {
                 binding.recyclerView.setAdapter(new UserAdapter(MainActivity.this, users));
             }
         });
+    }
+
+    @Override
+    public void onItemClick(User user) {
+
+    }
+
+    @Override
+    public void onDeleteBtnClick(User user) {
+
+        viewModel.delete(user);
     }
 }

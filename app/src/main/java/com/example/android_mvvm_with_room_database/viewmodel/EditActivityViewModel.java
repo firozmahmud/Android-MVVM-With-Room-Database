@@ -9,4 +9,10 @@ public class EditActivityViewModel extends AndroidViewModel {
     public EditActivityViewModel(@NonNull Application application) {
         super(application);
     }
+
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.android_mvvm_with_room_database.model;
+package com.example.android_mvvm_with_room_database.service.model;
 
 
 import android.arch.persistence.room.ColumnInfo;
@@ -19,6 +19,12 @@ public class User {
 
     @ColumnInfo(name = "number")
     private String number;
+
+    public User(String name, String address, String number) {
+        this.name = name;
+        this.address = address;
+        this.number = number;
+    }
 
     public int getId() {
         return id;

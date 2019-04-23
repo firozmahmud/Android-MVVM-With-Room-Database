@@ -39,6 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_weight="0.8"
+                    android:background="@color/white_color"
                     android:scaleType="fitXY"
                     android:src="@drawable/delete" />
             </LinearLayout>
