@@ -99,11 +99,11 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
 
         switch (item.getItemId()) {
             case R.id.menu_edit:
-                EventBus.getDefault().post(user);
+                EventBus.getDefault().postSticky(user);
                 startActivity(new Intent(this, EditActivity.class));
                 break;
             case R.id.menu_details:
-                EventBus.getDefault().post(user);
+                EventBus.getDefault().postSticky(user);
                 startActivity(new Intent(this, DetailsActivity.class));
                 break;
         }

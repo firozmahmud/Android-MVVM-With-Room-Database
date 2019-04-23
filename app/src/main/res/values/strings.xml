@@ -2,4 +2,9 @@
     <string name="app_name">Android-MVVM-With-Room-Database</string>
     <string name="txt_hint">Salman Khan</string>
     <string name="description">Description</string>
+    <string name="details_txt">Details</string>
+    <string name="edit_txt">Edit</string>
+    <string name="name_hint">Sample Name</string>
+    <string name="address_hint">Address</string>
+    <string name="number_hint">01744760111</string>
 </resources>
