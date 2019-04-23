@@ -3,14 +3,17 @@ package com.example.android_mvvm_with_room_database.view.activity;
 import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.android_mvvm_with_room_database.R;
 import com.example.android_mvvm_with_room_database.databinding.ActivityMainBinding;
@@ -18,6 +21,8 @@ import com.example.android_mvvm_with_room_database.service.model.User;
 import com.example.android_mvvm_with_room_database.view.adapter.UserAdapter;
 import com.example.android_mvvm_with_room_database.view.listener.ItemClickListener;
 import com.example.android_mvvm_with_room_database.viewmodel.MainActivityViewModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -90,13 +95,29 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     }
 
     @Override
-    public void onItemClick(User user) {
+    public void onItemLongClick(User user, MenuItem item) {
 
+        switch (item.getItemId()) {
+            case R.id.menu_edit:
+                EventBus.getDefault().post(user);
+                startActivity(new Intent(this, EditActivity.class));
+                break;
+            case R.id.menu_details:
+                EventBus.getDefault().post(user);
+                startActivity(new Intent(this, DetailsActivity.class));
+                break;
+        }
     }
 
     @Override
     public void onDeleteBtnClick(User user) {
 
         viewModel.delete(user);
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }
