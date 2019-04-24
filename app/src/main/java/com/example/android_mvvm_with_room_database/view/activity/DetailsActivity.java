@@ -21,7 +21,11 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details);
+
+        // Set the actionbar title
         setTitle(getResources().getText(R.string.details_txt));
+
+        // Resister for event bus
         EventBus.getDefault().register(this);
 
     }

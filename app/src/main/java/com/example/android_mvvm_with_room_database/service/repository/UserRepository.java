@@ -33,8 +33,12 @@ public class UserRepository {
 
 
     public void delete(User user) {
-        //userDao.delete(user);
         new DeleteAsyncTask().execute(user);
+    }
+
+
+    public void updateUser(User user) {
+        new UpdateAsyncTask().execute(user);
     }
 
 
@@ -56,4 +60,15 @@ public class UserRepository {
             return null;
         }
     }
+
+    class UpdateAsyncTask extends AsyncTask<User, Void, Void> {
+        @Override
+        protected Void doInBackground(User... users) {
+
+            userDao.update(users[0]);
+            return null;
+        }
+    }
+
+
 }

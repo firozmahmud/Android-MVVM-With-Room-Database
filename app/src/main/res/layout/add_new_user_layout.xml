@@ -55,6 +55,7 @@
         android:layout_below="@id/ll"
         android:gravity="bottom"
         android:text="Save"
+        android:textAlignment="center"
         android:textSize="@dimen/_18sdp"
         android:textStyle="bold" />
 

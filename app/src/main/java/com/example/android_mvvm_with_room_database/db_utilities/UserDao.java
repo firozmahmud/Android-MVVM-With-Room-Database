@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.android_mvvm_with_room_database.service.model.User;
 
@@ -21,4 +22,7 @@ public interface UserDao {
 
     @Delete
     public void delete(User user);
+
+    @Update
+    public void update(User user);
 }
